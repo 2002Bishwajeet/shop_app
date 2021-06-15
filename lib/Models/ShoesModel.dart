@@ -43,7 +43,7 @@ class ShoesDetails with ChangeNotifier {
     isFavorite = !isFavorite;
     notifyListeners(); // equivalent to setstate and stateful iss bas widget rebuild
     final url = Uri.parse(
-        "https://shoeapp-e1665-default-rtdb.asia-southeast1.firebasedatabase.app/Shoes/$id.json?auth=$token");
+        "https://[project-name]-default-rtdb.asia-southeast1.firebasedatabase.app/Shoes/$id.json?auth=$token");
     try {
       final response = await http.patch(url, //patch for updating data
           body: json.encode({

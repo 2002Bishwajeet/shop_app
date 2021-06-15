@@ -63,7 +63,7 @@ class Order with ChangeNotifier {
 
   Future<void> addOrder(List<CartItem> cartProducts, double total) async {
     final url = Uri.parse(
-        "https://shoeapp-e1665-default-rtdb.asia-southeast1.firebasedatabase.app/Orders.json?auth=$token");
+        "https://[project-name]-default-rtdb.asia-southeast1.firebasedatabase.app/Orders.json?auth=$token");
     final timestamp = DateTime
         .now(); //thoda time difference hoga isliye ek var mein daal diya
     final response = await http.post(url,

@@ -125,7 +125,7 @@ class Shoes with ChangeNotifier {
 
   Future<void> fetchShoes() async {
     final url = Uri.parse(
-        "https://shoeapp-e1665-default-rtdb.asia-southeast1.firebasedatabase.app/Shoes.json?auth=$token");
+        "[https://[project-name]-default-rtdb.asia-southeast1.firebasedatabase.app/Shoes.json?auth=$token]");
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -154,7 +154,7 @@ class Shoes with ChangeNotifier {
 
   Future<void> addShoe(ShoesDetails addShoe) async {
     final url = Uri.https(
-        "shoeapp-e1665-default-rtdb.asia-southeast1.firebasedatabase.app",
+        "[project-name]-default-rtdb.asia-southeast1.firebasedatabase.app",
         "Shoes.json?auth=$token");
     try {
       final response = await http.post(url,
