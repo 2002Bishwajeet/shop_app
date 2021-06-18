@@ -28,7 +28,11 @@ class ShopApp extends StatelessWidget {
         ChangeNotifierProxyProvider<Auth, Shoes>(
           //It's an efficient method don't use .value one
           create: (ctx) => Shoes(),
-          update: (ctx, auth, previousProduct) => previousProduct..auth = auth,
+          update: (_, auth, previousProduct) {
+            previousProduct..auth = auth;
+            previousProduct..userID = auth.userId;
+            return previousProduct;
+          },
         ),
         ChangeNotifierProvider(
           create: (ctx) => Cart(),

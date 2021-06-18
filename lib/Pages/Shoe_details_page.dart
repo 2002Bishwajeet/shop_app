@@ -150,7 +150,9 @@ class _ShoeDetailScreenState extends State<ShoeDetailScreen> {
                               setState(() {
                                 loadedProduct.toggleFavorite(
                                     Provider.of<Auth>(context, listen: false)
-                                        .token);
+                                        .token,
+                                    Provider.of<Auth>(context, listen: false)
+                                        .userId);
                               });
                             },
                             icon: Icon(loadedProduct.isFavorite

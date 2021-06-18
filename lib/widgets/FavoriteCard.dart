@@ -50,7 +50,8 @@ class FavCard extends StatelessWidget {
                     IconButton(
                       onPressed: () {
                         shoe.toggleFavorite(
-                            Provider.of<Auth>(context, listen: false).token);
+                            Provider.of<Auth>(context, listen: false).token,
+                            Provider.of<Auth>(context, listen: false).userId);
                       },
                       icon: Icon(shoe.isFavorite
                           ? LineIcons.heartAlt

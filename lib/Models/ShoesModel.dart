@@ -38,17 +38,17 @@ class ShoesDetails with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleFavorite(String token) async {
+  Future<void> toggleFavorite(String token, String userId) async {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners(); // equivalent to setstate and stateful iss bas widget rebuild
     final url = Uri.parse(
-        "https://shoeapp-e1665-default-rtdb.asia-southeast1.firebasedatabase.app/Shoes/$id.json?auth=$token");
+        "https://shoeapp-e1665-default-rtdb.asia-southeast1.firebasedatabase.app/userFavorites/$userId/$id.json?auth=$token");
     try {
-      final response = await http.patch(url, //patch for updating data
-          body: json.encode({
-            'isFavorite': isFavorite,
-          }));
+      final response = await http.put(url, //patch for updating data
+          body: json.encode(
+            isFavorite,
+          ));
       if (response.statusCode >= 400) {
         _setFave(oldStatus);
       }

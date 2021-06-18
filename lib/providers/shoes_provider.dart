@@ -100,6 +100,10 @@ class Shoes with ChangeNotifier {
 
   String token;
   Auth _auth;
+  String userId;
+  set userID(String userIdValue) {
+    userId = userIdValue;
+  }
 
   set auth(Auth value) {
 //   if (_auth != value) {
@@ -132,12 +136,15 @@ class Shoes with ChangeNotifier {
       if (extractedData == null) {
         return;
       }
+      final favoriteShoes = await http.get(Uri.parse(
+          "https://shoeapp-e1665-default-rtdb.asia-southeast1.firebasedatabase.app/userFavorites/$userId.json?auth=$token"));
       final List<ShoesDetails> loadedShoes = [];
+      final favData = json.decode(favoriteShoes.body);
       extractedData.forEach((id, shoedata) {
         loadedShoes.add(ShoesDetails(
             id: id,
             amount: shoedata['amount'],
-            isFavorite: shoedata['isFavorite'],
+            isFavorite: favData == null ? false : favData[id] ?? false,
             img: shoedata['img'],
             title: shoedata['title'],
             description: shoedata['description'],

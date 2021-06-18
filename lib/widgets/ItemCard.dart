@@ -20,7 +20,7 @@ class ItemCard extends StatelessWidget {
   // }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<Auth>(context,listen: false).token;
+    final auth = Provider.of<Auth>(context, listen: false);
     // final shoe = Provider.of<ShoesDetails>(context); -> isme har baar build call hoga jab data change
     // ya toh upar waala kar ya consumer se wrap kar de
     return Consumer<ShoesDetails>(
@@ -62,7 +62,7 @@ class ItemCard extends StatelessWidget {
                     Spacer(),
                     IconButton(
                       onPressed: () {
-                        shoe.toggleFavorite(auth);
+                        shoe.toggleFavorite(auth.token, auth.userId);
                       },
                       icon: Icon(shoe.isFavorite
                           ? LineIcons.heartAlt
