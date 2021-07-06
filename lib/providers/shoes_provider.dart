@@ -173,7 +173,9 @@ class Shoes with ChangeNotifier {
             'description': addShoe.description,
             'subtitle': addShoe.subtitle,
             'brand': addShoe.brand,
-            'isFavorite': addShoe.isFavorite
+            'isFavorite': addShoe.isFavorite,
+            
+            
           }));
       final newShoe = ShoesDetails(
           id: jsonDecode(response.body)['name'],

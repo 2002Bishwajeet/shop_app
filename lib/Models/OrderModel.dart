@@ -20,12 +20,15 @@ class OrderItem {
 
 class Order with ChangeNotifier {
   List<OrderItem> _orders = [];
+
+  // Order(this.userId);
   List<OrderItem> get orders {
     return [..._orders];
   }
 
   String token;
   Auth _auth;
+  // final String userId;
 
   set auth(Auth value) {
 //   if (_auth != value) {

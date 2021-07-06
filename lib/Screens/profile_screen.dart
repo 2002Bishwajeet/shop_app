@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/Pages/ManageProducts.dart';
 import 'package:shop_app/Pages/OrderDetailsScreen.dart';
+import 'package:shop_app/providers/auth.dart';
 import 'package:shop_app/themes.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -130,6 +132,21 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                Card(
+                  margin: const EdgeInsets.all(12),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  elevation: 5,
+                  child: ListTile(
+                    title: Center(
+                        child: Text("Logout",
+                            style: TextStyle(
+                                color: Colors.blueGrey, fontSize: 22))),
+                    onTap: () {
+                      Provider.of<Auth>(context, listen: false).logout();
+                    },
+                  ),
+                )
               ],
             )),
       ),
