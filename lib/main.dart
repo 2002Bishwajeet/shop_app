@@ -8,6 +8,7 @@ import 'package:shop_app/Pages/OrderDetailsScreen.dart';
 import 'package:shop_app/Pages/Shoe_details_page.dart';
 import 'package:shop_app/Pages/homepage.dart';
 import 'package:shop_app/Pages/signIn.dart';
+import 'package:shop_app/Screens/Splash_screen.dart';
 import 'package:shop_app/Screens/cart_screen.dart';
 import 'package:shop_app/providers/auth.dart';
 import 'package:shop_app/providers/shoes_provider.dart';
@@ -49,7 +50,15 @@ class ShopApp extends StatelessWidget {
           darkTheme: ShopTheme.darkTheme(context),
           debugShowCheckedModeBanner: false,
           debugShowMaterialGrid: false,
-          home: auth.isAuth ? HomePage() : SignIn(),
+          home: auth.isAuth
+              ? HomePage()
+              : FutureBuilder(
+                  future: auth.tryAutoLogin(),
+                  builder: (ctx, authResultSnapshot) =>
+                      authResultSnapshot.connectionState ==
+                              ConnectionState.waiting
+                          ? SplashScreen()
+                          : SignIn()),
           themeMode: ThemeMode.light,
           routes: {
             ShoeDetailScreen.routname: (ctx) => ShoeDetailScreen(),
